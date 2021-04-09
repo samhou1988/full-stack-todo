@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/samhou1988/full-stack-todo#readme",
   "devDependencies": {
+    "@tencent/eslint-config-tencent": "^1.0.0-beta.5",
     "concurrently": "^6.0.1"
   }
 }
