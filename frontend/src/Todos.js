@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import 'bulma/css/bulma.css';
 import { connect } from 'react-redux';
 import { addTodo, toggleTodo, deleteTodo, fetchTodos } from './actions/todos';
@@ -18,85 +18,73 @@ const Todo = ({ todo, id, onDelete, onToggle }) => (
     </div>
   </div>
 );
-class Todos extends Component {
-  state = {
-    newTodo: '',
-    todos: [],
-    error: '',
-    isLoading: false,
-  };
 
-  componentDidMount() {
-    this.props.fetchTodos();
-  }
+const Todos = ({ fetchTodos, addTodo, toggleTodo, deleteTodo, todos, isLoading, isSaving, error } = {}) => {
+  const [newTodo, setNewTodo] = useState('');
+  const total = todos.length;
+  const complete = todos.filter((todo) => todo.done).length;
+  const incomplete = todos.filter((todo) => !todo.done).length;
 
-  addTodo(event) {
+  useEffect(() => {
+    fetchTodos();
+  }, [fetchTodos]);
+
+  const add = (event) => {
     event.preventDefault(); // Prevent form from reloading page
-    const { newTodo } = this.state;
 
     if (newTodo) {
       const todo = { description: newTodo, done: false };
-      this.props.addTodo(todo);
-      this.setState({
-        newTodo: '',
-      });
+      addTodo(todo);
+      setNewTodo('');
     }
-  }
+  };
 
-  render() {
-    const { todos, isLoading, isSaving, error } = this.props;
+  return (
+    <section className="section full-column">
+      <h1 className="title white">Todos</h1>
+      <div className="error">{error}</div>
 
-    const total = todos.length;
-    const complete = todos.filter((todo) => todo.done).length;
-    const incomplete = todos.filter((todo) => !todo.done).length;
-
-    return (
-      <section className="section full-column">
-        <h1 className="title white">Todos</h1>
-        <div className="error">{error}</div>
-
-        <form className="form" onSubmit={this.addTodo.bind(this)}>
-          <div className="field has-addons" style={{ justifyContent: 'center' }}>
-            <div className="control">
-              <input
-                className="input"
-                value={this.state.newTodo}
-                placeholder="New todo"
-                onChange={(e) => this.setState({ newTodo: e.target.value })}
-              />
-            </div>
-
-            <div className="control">
-              <button
-                className={`button is-success ${(isLoading || isSaving) && 'is-loading'}`}
-                disabled={isLoading || isSaving}
-              >
-                Add
-              </button>
-            </div>
-          </div>
-        </form>
-
-        <div className=" container todo-list">
-          {todos.map((todo) => (
-            <Todo
-              // eslint-disable-next-line no-underscore-dangle
-              key={todo._id}
-              // eslint-disable-next-line no-underscore-dangle
-              id={todo._id}
-              todo={todo}
-              onToggle={this.props.toggleTodo}
-              onDelete={this.props.deleteTodo}
+      <form className="form" onSubmit={add}>
+        <div className="field has-addons" style={{ justifyContent: 'center' }}>
+          <div className="control">
+            <input
+              className="input"
+              value={newTodo}
+              placeholder="New todo"
+              onChange={(e) => setNewTodo(e.target.value)}
             />
-          ))}
-          <div className="white">
-            Total: {total} , Complete: {complete} , Incomplete: {incomplete}
+          </div>
+
+          <div className="control">
+            <button
+              className={`button is-success ${(isLoading || isSaving) && 'is-loading'}`}
+              disabled={isLoading || isSaving}
+            >
+              Add
+            </button>
           </div>
         </div>
-      </section>
-    );
-  }
-}
+      </form>
+
+      <div className=" container todo-list">
+        {todos.map((todo) => (
+          <Todo
+            // eslint-disable-next-line no-underscore-dangle
+            key={todo._id}
+            // eslint-disable-next-line no-underscore-dangle
+            id={todo._id}
+            todo={todo}
+            onToggle={toggleTodo}
+            onDelete={deleteTodo}
+          />
+        ))}
+        <div className="white">
+          Total: {total} , Complete: {complete} , Incomplete: {incomplete}
+        </div>
+      </div>
+    </section>
+  );
+};
 
 const mapStateToProps = (state) => ({
   todos: state.todos.items,
