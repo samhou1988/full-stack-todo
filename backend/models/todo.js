@@ -1,4 +1,4 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
 // Declare Schema
 const TodoSchema = new mongoose.Schema(
@@ -6,11 +6,8 @@ const TodoSchema = new mongoose.Schema(
     description: { type: String },
     done: { type: Boolean },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
-// Declare Model to mongoose with Schema
-const Todo = mongoose.model('Todo', TodoSchema)
-
 // Export Model to be used in Node
-module.exports = mongoose.model('Todo')
+module.exports = mongoose.model('Todo', TodoSchema);

@@ -2,11 +2,11 @@ import { combineReducers } from 'redux';
 import todos, { TODOS_DEFAULT_STATE } from './todos';
 
 const todoApp = combineReducers({
-  todos
-})
+  todos,
+});
 
 export const DEFAULT_STATE = {
-  todos: TODOS_DEFAULT_STATE
-}
+  todos: TODOS_DEFAULT_STATE,
+};
 
-export default todoApp
+export default todoApp;
