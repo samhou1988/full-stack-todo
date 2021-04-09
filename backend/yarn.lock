@@ -354,6 +354,13 @@
   dependencies:
     "ms" "2.0.0"
 
+"debug@^3.1.0", "debug@~3.1.0", "debug@3.1.0":
+  "integrity" "sha512-OX8XqP7/1a9cqkxYw2yXss15f26NKWBpDXQd0/uK/KPqdQhxbPa994hnzjcE2VqQpDslf55723cKPUOGSmMY3g=="
+  "resolved" "https://registry.npmjs.org/debug/-/debug-3.1.0.tgz"
+  "version" "3.1.0"
+  dependencies:
+    "ms" "2.0.0"
+
 "debug@^3.2.6":
   "integrity" "sha512-CFjzYYAi4ThfiQvizrFQevTTXHtnCqWfe7x1AhgEscTz6ZbLbfoLRLPugTQyBth6f8ZERVUSyWHFD/7Wu4t1XQ=="
   "resolved" "https://registry.npmjs.org/debug/-/debug-3.2.7.tgz"
@@ -367,13 +374,6 @@
   "version" "4.3.1"
   dependencies:
     "ms" "2.1.2"
-
-"debug@~3.1.0", "debug@3.1.0":
-  "integrity" "sha512-OX8XqP7/1a9cqkxYw2yXss15f26NKWBpDXQd0/uK/KPqdQhxbPa994hnzjcE2VqQpDslf55723cKPUOGSmMY3g=="
-  "resolved" "https://registry.npmjs.org/debug/-/debug-3.1.0.tgz"
-  "version" "3.1.0"
-  dependencies:
-    "ms" "2.0.0"
 
 "decompress-response@^3.3.0":
   "integrity" "sha1-gKTdMjdIOEv6JICDYirt7Jgq3/M="
@@ -586,7 +586,7 @@
   "resolved" "https://registry.npmjs.org/http-cache-semantics/-/http-cache-semantics-4.1.0.tgz"
   "version" "4.1.0"
 
-"http-errors@^1.6.3", "http-errors@1.6.3":
+"http-errors@^1.6.3", "http-errors@~1.6.2", "http-errors@1.6.3":
   "integrity" "sha1-i1VoC7S+KDoLW/TqLjhYC+HZMg0="
   "resolved" "https://registry.npmjs.org/http-errors/-/http-errors-1.6.3.tgz"
   "version" "1.6.3"
@@ -846,6 +846,23 @@
     "methods" "^1.1.2"
     "path-to-regexp" "^6.1.0"
 
+"koa-send@^5.0.0":
+  "integrity" "sha512-tmcyQ/wXXuxpDxyNXv5yNNkdAMdFRqwtegBXUaowiQzUKqJehttS0x2j0eOZDQAyloAth5w6wwBImnFzkUz3pQ=="
+  "resolved" "https://registry.npmjs.org/koa-send/-/koa-send-5.0.1.tgz"
+  "version" "5.0.1"
+  dependencies:
+    "debug" "^4.1.1"
+    "http-errors" "^1.7.3"
+    "resolve-path" "^1.4.0"
+
+"koa-static@^5.0.0":
+  "integrity" "sha512-UqyYyH5YEXaJrf9S8E23GoJFQZXkBVJ9zYYMPGz919MSX1KuvAcycIuS0ci150HCoPf4XQVhQ84Qf8xRPWxFaQ=="
+  "resolved" "https://registry.npmjs.org/koa-static/-/koa-static-5.0.0.tgz"
+  "version" "5.0.0"
+  dependencies:
+    "debug" "^3.1.0"
+    "koa-send" "^5.0.0"
+
 "koa@^2.13.1":
   "integrity" "sha512-Lb2Dloc72auj5vK4X4qqL7B5jyDPQaZucc9sR/71byg7ryoD1NCaCm63CShk9ID9quQvDEi1bGR/iGjCG7As3w=="
   "resolved" "https://registry.npmjs.org/koa/-/koa-2.13.1.tgz"
@@ -1092,6 +1109,11 @@
   "resolved" "https://registry.npmjs.org/passthrough-counter/-/passthrough-counter-1.0.0.tgz"
   "version" "1.0.0"
 
+"path-is-absolute@1.0.1":
+  "integrity" "sha1-F0uSaHNVNP+8es5r9TpanhtcX18="
+  "resolved" "https://registry.npmjs.org/path-is-absolute/-/path-is-absolute-1.0.1.tgz"
+  "version" "1.0.1"
+
 "path-key@^3.1.0":
   "integrity" "sha512-ojmeN0qd+y0jszEtoY48r0Peq5dwMEkIlCOu6Q5f41lfkswXuKtYrhgoTpLnyIcHm24Uhqx+5Tqm2InSwLhE6Q=="
   "resolved" "https://registry.npmjs.org/path-key/-/path-key-3.1.1.tgz"
@@ -1213,6 +1235,14 @@
   "integrity" "sha1-lICrIOlP+h2egKgEx+oUdhGWa1c="
   "resolved" "https://registry.npmjs.org/resolve-from/-/resolve-from-2.0.0.tgz"
   "version" "2.0.0"
+
+"resolve-path@^1.4.0":
+  "integrity" "sha1-xL2p9e+y/OZSR4c6s2u02DT+Fvc="
+  "resolved" "https://registry.npmjs.org/resolve-path/-/resolve-path-1.4.0.tgz"
+  "version" "1.4.0"
+  dependencies:
+    "http-errors" "~1.6.2"
+    "path-is-absolute" "1.0.1"
 
 "responselike@^1.0.2":
   "integrity" "sha1-kYcg7ztjHFZCvgaPFa3lpG9Loec="
