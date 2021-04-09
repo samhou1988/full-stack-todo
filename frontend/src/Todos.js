@@ -80,7 +80,9 @@ class Todos extends Component {
         <div className=" container todo-list">
           {todos.map((todo) => (
             <Todo
+              // eslint-disable-next-line no-underscore-dangle
               key={todo._id}
+              // eslint-disable-next-line no-underscore-dangle
               id={todo._id}
               todo={todo}
               onToggle={this.props.toggleTodo}

@@ -6,12 +6,12 @@ import {
   DELETE_TODO,
   LOADED_TODOS,
   FETCH_TODOS,
-} from "../actions/todos";
+} from '../actions/todos';
 
 export const TODOS_DEFAULT_STATE = {
   loading: false,
   saving: false,
-  error: "",
+  error: '',
   items: [],
 };
 
@@ -40,19 +40,15 @@ export default function todos(state = TODOS_DEFAULT_STATE, action) {
     case TOGGLE_TODO:
       return {
         ...state,
-        items: state.items.map((todo) =>
-          todo._id === action.id ? { ...todo, done: !todo.done } : todo
-        ),
+        // eslint-disable-next-line no-underscore-dangle
+        items: state.items.map((todo) => (todo._id === action.id ? { ...todo, done: !todo.done } : todo)),
       };
 
     case DELETE_TODO:
       return {
         ...state,
-        items: state.items.reduce(
-          (items, todo) =>
-            todo._id !== action.id ? items.concat(todo) : items,
-          []
-        ),
+        // eslint-disable-next-line no-underscore-dangle
+        items: state.items.reduce((items, todo) => (todo._id !== action.id ? items.concat(todo) : items), []),
       };
 
     default:

@@ -4,7 +4,7 @@
   "description": "full stack todo list",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently — kill-others \" npm run backend\" \"npm run frontend\"",
+    "start": "concurrently --kill-others \"npm run backend\" \"npm run frontend\"",
     "frontend": "cd frontend && npm start",
     "backend": "cd backend && npm run dev",
     "build": "cd frontend && npm run build",
@@ -22,7 +22,6 @@
   },
   "homepage": "https://github.com/samhou1988/full-stack-todo#readme",
   "devDependencies": {
-    "@tencent/eslint-config-tencent": "^1.0.0-beta.5",
     "concurrently": "^6.0.1"
   }
 }
