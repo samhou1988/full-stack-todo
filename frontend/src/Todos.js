@@ -7,12 +7,12 @@ const Todo = ({ todo, id, onDelete, onToggle }) => (
    <div className="box todo-item level is-mobile">
    <div className="level-left">
      <label className={`level-item todo-description ${todo.done && 'completed'}`}>
-        <input className="checkbox" type="checkbox" onChange={onToggle} />
+        <input className="checkbox" type="checkbox" onChange={onToggle.bind(this, id)} />
        <span>{todo.description}</span>
      </label>
    </div>
      <div className="level-right">
-      <p className="delete level-item" onClick={onDelete} >Delete</p>
+      <p className="delete level-item" onClick={onDelete.bind(this, id)} >Delete</p>
      </div>
    </div>
  )
@@ -42,7 +42,7 @@ class Todos extends Component {
   }
 
   render() {
-    let { todos, newTodo, isLoading, isSaving, error } = this.props
+    let { todos, isLoading, isSaving, error } = this.props
 
     const total = todos.length
     const complete = todos.filter((todo) => todo.done).length
@@ -57,7 +57,7 @@ class Todos extends Component {
             <div className="field has-addons" style={{ justifyContent: 'center' }}>
             <div className="control">
             <input className="input"
-              value={newTodo}
+              value={this.state.newTodo}
               placeholder="New todo"
               onChange={(e) => this.setState({ newTodo: e.target.value })}/>
             </div>
@@ -71,7 +71,7 @@ class Todos extends Component {
         </form >
 
         <div className=" container todo-list">
-          {todos.map((todo) => <Todo key={todo._id} id={todo._id} todo={todo} />)}
+          {todos.map((todo) => <Todo key={todo._id} id={todo._id} todo={todo} onToggle={this.props.toggleTodo} onDelete={this.props.deleteTodo} />)}
           <div className="white">
             Total: {total} , Complete: {complete} , Incomplete: {incomplete}
           </div>

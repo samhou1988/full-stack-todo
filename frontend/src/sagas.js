@@ -39,7 +39,7 @@ function* deleteTodo(action) {
 
 function* updateTodo(action) {
   try {
-    yield call(fetch, `v1/todos/${action.id}`, { method: 'POST' })
+    yield call(fetch, `v1/todos/${action.id}`, { method: 'PUT' })
   } catch (e) {
     yield put(todosFailure(e.message))
   }

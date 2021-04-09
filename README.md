@@ -3,6 +3,13 @@ full stack todo list
 
 
 ## useage
+
+### dependencies
+```
+> brew install mongodb/brew/mongodb-community
+> mkdir -p ~/data/db
+> mongod --dbpath ~/data/db
+```
 ### install
 ```
 > npm install
