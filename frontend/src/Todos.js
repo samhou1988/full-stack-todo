@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import 'bulma/css/bulma.css';
 import { connect } from 'react-redux';
 import { addTodo, toggleTodo, deleteTodo, fetchTodos } from './actions/todos';
@@ -7,17 +8,38 @@ const Todo = ({ todo, id, onDelete, onToggle }) => (
   <div className="box todo-item level is-mobile">
     <div className="level-left">
       <label className={`level-item todo-description ${todo.done && 'completed'}`}>
-        <input className="checkbox" type="checkbox" onChange={onToggle.bind(this, id)} />
+        <input
+          className="checkbox"
+          type="checkbox"
+          onChange={() => {
+            onToggle(id);
+          }}
+        />
         <span>{todo.description}</span>
       </label>
     </div>
     <div className="level-right">
-      <p className="delete level-item" onClick={onDelete.bind(this, id)}>
+      <p
+        className="delete level-item"
+        onClick={() => {
+          onDelete(id);
+        }}
+      >
         Delete
       </p>
     </div>
   </div>
 );
+
+Todo.propTypes = {
+  todo: PropTypes.shape({
+    done: PropTypes.bool,
+    description: PropTypes.string,
+  }),
+  id: PropTypes.string.isRequired,
+  onDelete: PropTypes.func.isRequired,
+  onToggle: PropTypes.func.isRequired,
+};
 
 const Todos = ({ fetchTodos, addTodo, toggleTodo, deleteTodo, todos, isLoading, isSaving, error } = {}) => {
   const [newTodo, setNewTodo] = useState('');
