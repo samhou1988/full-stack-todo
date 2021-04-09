@@ -1,0 +1,27 @@
+{
+  "name": "full-stack-todo",
+  "version": "1.0.0",
+  "description": "full stack todo list",
+  "main": "index.js",
+  "scripts": {
+    "start": "concurrently — kill-others \" npm run backend\" \"npm run frontend\"",
+    "frontend": "cd frontend && npm start",
+    "backend": "cd backend && npm run dev",
+    "build": "cd frontend && npm run build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/samhou1988/full-stack-todo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/samhou1988/full-stack-todo/issues"
+  },
+  "homepage": "https://github.com/samhou1988/full-stack-todo#readme",
+  "devDependencies": {
+    "concurrently": "^6.0.1"
+  }
+}
