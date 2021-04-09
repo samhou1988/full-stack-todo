@@ -11,7 +11,9 @@ const mongoose = require('mongoose');
 const app = new Koa();
 const router = new Router();
 
-app.use(Helmet());
+app.use(Helmet({
+  contentSecurityPolicy: false,
+}));
 if (process.env.NODE_ENV === 'development') {
   app.use(Logger());
 }
