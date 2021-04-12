@@ -1,9 +1,9 @@
 const Koa = require('koa');
 const Router = require('koa-router');
-const Logger = require('koa-logger');
-const Cors = require('@koa/cors');
-const BodyParser = require('koa-bodyparser');
-const Helmet = require('koa-helmet');
+const logger = require('koa-logger');
+const cors = require('@koa/cors');
+const bodyParser = require('koa-bodyparser');
+const helmet = require('koa-helmet');
 const respond = require('koa-respond');
 const koaStatic = require('koa-static');
 const mongoose = require('mongoose');
@@ -11,16 +11,18 @@ const mongoose = require('mongoose');
 const app = new Koa();
 const router = new Router();
 
-app.use(Helmet({
-  contentSecurityPolicy: false,
-}));
+app.use(
+  helmet({
+    contentSecurityPolicy: false,
+  }),
+);
 if (process.env.NODE_ENV === 'development') {
-  app.use(Logger());
+  app.use(logger());
 }
 
-app.use(Cors());
+app.use(cors());
 app.use(
-  BodyParser({
+  bodyParser({
     enableTypes: ['json'],
     jsonLimit: '5mb',
     strict: true,
